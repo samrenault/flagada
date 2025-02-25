@@ -18,7 +18,7 @@ Please note that long call version, like `flag_zz()`, must use _lowercase_ of th
 
 `Hello people coming from #flag_fr(), #flag_eu(), #flag("DE") and more`
 
-![](doc/example_1.png)
+![Hello people coming from France, Europe, Germany and more](doc/example_1.png)
 
 ## Modifying the height
 
@@ -32,7 +32,7 @@ Either call the flag as `flag_zz(height:6em)` or `flag("ZZ",height:6em)`, `zz` o
 
 `Hello people coming from #flag_be(height: 1em), #flag_fr(height: 2em), #flag_eu(height:3em), #flag("DE",height: 2em), #flag("LU",height: 1em) and more`
 
-![](doc/example_2.png)
+![Hello people coming from Belgium, France, Europe, Germany, Luxembourg and more](doc/example_2.png)
 
 ## Comments
 
@@ -42,7 +42,7 @@ Some flags include coat of arms or other specific components. As ususally these 
 
 #### Example of coat of arms
 
-![](doc/example_3.png)
+![Hello people coming from Europe, Spain, Portugal and more](doc/example_3.png)
 
 In this example, coats of arms are used for Spanish and Portuguese flags (but not for European flag as stars can be constructed or displayed from an unicode like `U+2605`)
 
@@ -59,12 +59,11 @@ CA CD CF CG CH CI CL CM CN CO CR CU CV CY CZ DE DJ DK DO DZ EC EE EG ER ES ET EU
 FR GA GB GE GH GM GN GQ GR GT GW GY HN HR HT HU ID IE IL IN IQ IR IS IT JM JO JP KE
 KH KM KP KR KW LA LB LI LK LR LS LT LU LV LY MA MC MD ME MG MK ML MM MN MR MT
 MU MV MW MX MY MZ NA NE NG NI NL NO NP NZ OM PA PE PH PK PL PS PT PY QA RO RS RU
-SA SC SD SE SG SI SK SL SM SN SO SR SS ST SY SZ TG TL TN TR TW TZ UA UG US UY VA VE VN
-YE ZA ZM ZW
+SA SC SD SE SG SI SK SL SM SN SO SR SS ST SY SZ TG TL TN TR TW TZ UA UG US UY VA VE VN YE ZA ZM ZW
 
 For these flags, comments are welcome
 
-![](doc/example_4.png)
+![A list of flags](doc/example_4.png)
 
 ### Flags not yet covered so far
 

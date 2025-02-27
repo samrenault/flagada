@@ -8,3 +8,4 @@ description = "A package to generate countries flags, selecting country based on
 repository = "https://github.com/samrenault/flagada"
 keywords = ["display","flag","country flag"]
 categories = ["visualization","components"]
+exclude = ["doc/example_1.png","doc/example_2.png","doc/example_3.png","doc/example_4.png"]

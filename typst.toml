@@ -2,7 +2,7 @@
 name = "flagada"
 version = "0.1.0"
 entrypoint = "flags.typ"
-authors = ["renault.samuel@free.fr"]
+authors = ["samrenault <renault.samuel@free.fr>"]
 license = "MIT"
 description = "A package to generate countries flags, selecting country based on its ISO3166-1 code"
 repository = "https://github.com/samrenault/flagada"

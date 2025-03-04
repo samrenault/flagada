@@ -1,4 +1,4 @@
-#let flag_v2(colors,height:.65em,ratio:3/5,color_width:(1/2,)*2) = {
+#let flag-v2(colors,height:.65em,ratio:3/5,color-width:(1/2,)*2) = {
   box(
     height:height,
     width:1/ratio*height,
@@ -10,15 +10,15 @@
       { 
         stack(
           dir:ltr,
-          rect(width:100%*color_width.at(0), height: 100%,fill:colors.at(0),),
-          rect(width:100%*color_width.at(1), height: 100%,fill:colors.at(1),),
+          rect(width:100%*color-width.at(0), height: 100%,fill:colors.at(0),),
+          rect(width:100%*color-width.at(1), height: 100%,fill:colors.at(1),),
         )
       }
     )
   )
 }
 
-#let flag_v3(colors,height:.65em,ratio:2/3,color_width:(1/3,)*3) = {
+#let flag-v3(colors,height:.65em,ratio:2/3,color-width:(1/3,)*3) = {
   box(
   height:height,
   width:1/ratio*height,
@@ -30,16 +30,16 @@
     { 
       stack(
         dir:ltr,
-        rect(width:100%*color_width.at(0), height: 100%,fill:colors.at(0),),
-        rect(width:100%*color_width.at(1), height: 100%,fill:colors.at(1),),
-        rect(width:100%*color_width.at(2), height: 100%,fill:colors.at(2),)
+        rect(width:100%*color-width.at(0), height: 100%,fill:colors.at(0),),
+        rect(width:100%*color-width.at(1), height: 100%,fill:colors.at(1),),
+        rect(width:100%*color-width.at(2), height: 100%,fill:colors.at(2),)
         )
       }
     )
   ) 
 }
 
-#let flag_h3(colors,height:.65em,ratio:3/5,color_height:(1/3,)*3) = {
+#let flag-h3(colors,height:.65em,ratio:3/5,color-height:(1/3,)*3) = {
   box(
   height:height,
   width:1/ratio*height,
@@ -51,52 +51,52 @@
     { 
       stack(
         dir:ttb,
-        rect(width:100%, height: 100%*color_height.at(0),fill:colors.at(0),stroke:none),
-        rect(width:100%, height: 100%*color_height.at(1),fill:colors.at(1),stroke:none),
-        rect(width:100%, height: 100%*color_height.at(2),fill:colors.at(2),stroke:none)
+        rect(width:100%, height: 100%*color-height.at(0),fill:colors.at(0),stroke:none),
+        rect(width:100%, height: 100%*color-height.at(1),fill:colors.at(1),stroke:none),
+        rect(width:100%, height: 100%*color-height.at(2),fill:colors.at(2),stroke:none)
         )
       }
     )
   ) 
 }
 
-#let flag_cross(colors,height:.65em,x_sets:(5,0,3,0,10),y_sets:(4,0,3,0,4), full_cross:true) = {
+#let flag-cross(colors,height:.65em,x-sets:(5,0,3,0,10),y-sets:(4,0,3,0,4), full-cross:true) = {
   // up to 3 colors and 2 crosses 
   box(
     height:height,
-    width:x_sets.sum()/y_sets.sum()*height,
+    width:x-sets.sum()/y-sets.sum()*height,
     grid(
-      columns: x_sets.map(i=>i*1fr),
+      columns: x-sets.map(i=>i*1fr),
       // first line 
-      rect(fill:colors.at(0),height: y_sets.at(0)/y_sets.sum()*100%,width: 100%, outset: (bottom: 1pt,right:if full_cross {0pt} else {1pt}),),
-      rect(fill:colors.at(1),height: y_sets.at(0)/y_sets.sum()*100%,width: 100%, outset: (bottom: 1pt), stroke:none),
-      rect(fill:if full_cross {colors.at(2)} else {colors.at(1)},height: y_sets.at(0)/y_sets.sum()*100%,width: 100%, outset: (bottom: 1pt,x:if full_cross {0pt} else {1pt}),),
-      rect(fill:colors.at(1),height: y_sets.at(0)/y_sets.sum()*100%,width: 100%, outset: (bottom: 1pt,x:1pt), stroke:none),
-      rect(fill:colors.at(0),height: y_sets.at(0)/y_sets.sum()*100%,width: 100%, outset: (bottom: 1pt,left:1pt)),
+      rect(fill:colors.at(0),height: y-sets.at(0)/y-sets.sum()*100%,width: 100%, outset: (bottom: 1pt,right:if full-cross {0pt} else {1pt}),),
+      rect(fill:colors.at(1),height: y-sets.at(0)/y-sets.sum()*100%,width: 100%, outset: (bottom: 1pt), stroke:none),
+      rect(fill:if full-cross {colors.at(2)} else {colors.at(1)},height: y-sets.at(0)/y-sets.sum()*100%,width: 100%, outset: (bottom: 1pt,x:if full-cross {0pt} else {1pt}),),
+      rect(fill:colors.at(1),height: y-sets.at(0)/y-sets.sum()*100%,width: 100%, outset: (bottom: 1pt,x:1pt), stroke:none),
+      rect(fill:colors.at(0),height: y-sets.at(0)/y-sets.sum()*100%,width: 100%, outset: (bottom: 1pt,left:1pt)),
       // second line
-      rect(fill:colors.at(1),height: y_sets.at(1)/y_sets.sum()*100%,width: 100%, stroke:none),
-      rect(fill:colors.at(1),height: y_sets.at(1)/y_sets.sum()*100%,width: 100%, outset: (left:1pt),stroke:none),
-      rect(fill:colors.at(2),height: y_sets.at(1)/y_sets.sum()*100%,width: 100%, outset: (bottom: 1pt,)),
-      rect(fill:colors.at(1),height: y_sets.at(1)/y_sets.sum()*100%,width: 100%, outset: (x:1pt), stroke:none),
-      rect(fill:colors.at(1),height: y_sets.at(1)/y_sets.sum()*100%,width: 100%, stroke:none),
+      rect(fill:colors.at(1),height: y-sets.at(1)/y-sets.sum()*100%,width: 100%, stroke:none),
+      rect(fill:colors.at(1),height: y-sets.at(1)/y-sets.sum()*100%,width: 100%, outset: (left:1pt),stroke:none),
+      rect(fill:colors.at(2),height: y-sets.at(1)/y-sets.sum()*100%,width: 100%, outset: (bottom: 1pt,)),
+      rect(fill:colors.at(1),height: y-sets.at(1)/y-sets.sum()*100%,width: 100%, outset: (x:1pt), stroke:none),
+      rect(fill:colors.at(1),height: y-sets.at(1)/y-sets.sum()*100%,width: 100%, stroke:none),
       // middle line
-      rect(fill:if full_cross {colors.at(2)} else {colors.at(1)},height: y_sets.at(2)/y_sets.sum()*100%,width: 100%, outset: (y:if full_cross {0pt} else {1pt})),
-      rect(fill:colors.at(2),height: y_sets.at(2)/y_sets.sum()*100%,width: 100%, outset: (x:1pt)),
-      rect(fill:colors.at(2),height: y_sets.at(2)/y_sets.sum()*100%,width: 100%, outset: (x:1pt,)),
-      rect(fill:colors.at(2),height: y_sets.at(2)/y_sets.sum()*100%,width: 100%, outset: (x:1pt)),
-      rect(fill:if full_cross {colors.at(2)} else {colors.at(1)},height: y_sets.at(2)/y_sets.sum()*100%,width: 100%, outset: (y:if full_cross {0pt} else {1pt})),
+      rect(fill:if full-cross {colors.at(2)} else {colors.at(1)},height: y-sets.at(2)/y-sets.sum()*100%,width: 100%, outset: (y:if full-cross {0pt} else {1pt})),
+      rect(fill:colors.at(2),height: y-sets.at(2)/y-sets.sum()*100%,width: 100%, outset: (x:1pt)),
+      rect(fill:colors.at(2),height: y-sets.at(2)/y-sets.sum()*100%,width: 100%, outset: (x:1pt,)),
+      rect(fill:colors.at(2),height: y-sets.at(2)/y-sets.sum()*100%,width: 100%, outset: (x:1pt)),
+      rect(fill:if full-cross {colors.at(2)} else {colors.at(1)},height: y-sets.at(2)/y-sets.sum()*100%,width: 100%, outset: (y:if full-cross {0pt} else {1pt})),
       // penultimate line
-      rect(fill:colors.at(1),height: y_sets.at(3)/y_sets.sum()*100%,width: 100%, stroke:none),
-      rect(fill:colors.at(1),height: y_sets.at(3)/y_sets.sum()*100%,width: 100%, outset: (left:0pt),stroke:none),
-      rect(fill:colors.at(2),height: y_sets.at(3)/y_sets.sum()*100%,width: 100%, outset: (top: 1pt)),
-      rect(fill:colors.at(1),height: y_sets.at(3)/y_sets.sum()*100%,width: 100%, outset: (right:0pt),stroke:none),
-      rect(fill:colors.at(1),height: y_sets.at(3)/y_sets.sum()*100%,width: 100%, stroke:none),
+      rect(fill:colors.at(1),height: y-sets.at(3)/y-sets.sum()*100%,width: 100%, stroke:none),
+      rect(fill:colors.at(1),height: y-sets.at(3)/y-sets.sum()*100%,width: 100%, outset: (left:0pt),stroke:none),
+      rect(fill:colors.at(2),height: y-sets.at(3)/y-sets.sum()*100%,width: 100%, outset: (top: 1pt)),
+      rect(fill:colors.at(1),height: y-sets.at(3)/y-sets.sum()*100%,width: 100%, outset: (right:0pt),stroke:none),
+      rect(fill:colors.at(1),height: y-sets.at(3)/y-sets.sum()*100%,width: 100%, stroke:none),
       // last line 
-      rect(fill:colors.at(0),height: y_sets.at(4)/y_sets.sum()*100%,width: 100%, outset: (top:if full_cross {0pt} else {1pt}, right: if full_cross {0pt} else {1pt}),),
-      rect(fill:colors.at(1),height: y_sets.at(4)/y_sets.sum()*100%,width: 100%, outset: (top:1pt), stroke:none),
-      rect(fill:if full_cross {colors.at(2)} else {colors.at(1)},height: y_sets.at(4)/y_sets.sum()*100%,width: 100%, outset: (top:1pt,x:if full_cross {0pt} else {1pt}),),
-      rect(fill:colors.at(1),height: y_sets.at(4)/y_sets.sum()*100%,width: 100%, outset: (top:1pt), stroke:none),
-      rect(fill:colors.at(0),height: y_sets.at(4)/y_sets.sum()*100%,width: 100%, outset: (top:if full_cross {0pt} else {1pt}, left: if full_cross {0pt} else {1pt}),),
+      rect(fill:colors.at(0),height: y-sets.at(4)/y-sets.sum()*100%,width: 100%, outset: (top:if full-cross {0pt} else {1pt}, right: if full-cross {0pt} else {1pt}),),
+      rect(fill:colors.at(1),height: y-sets.at(4)/y-sets.sum()*100%,width: 100%, outset: (top:1pt), stroke:none),
+      rect(fill:if full-cross {colors.at(2)} else {colors.at(1)},height: y-sets.at(4)/y-sets.sum()*100%,width: 100%, outset: (top:1pt,x:if full-cross {0pt} else {1pt}),),
+      rect(fill:colors.at(1),height: y-sets.at(4)/y-sets.sum()*100%,width: 100%, outset: (top:1pt), stroke:none),
+      rect(fill:colors.at(0),height: y-sets.at(4)/y-sets.sum()*100%,width: 100%, outset: (top:if full-cross {0pt} else {1pt}, left: if full-cross {0pt} else {1pt}),),
     )
   ) 
 }
@@ -128,7 +128,7 @@
 // ad 
 #let flag-ad(height:.65em) = {
   box(
-    flag_v3(
+    flag-v3(
       (rgb(16,6,159),rgb(254,221,0),rgb(213,0,50)),
       height: height,
       ratio:7/10)
@@ -205,7 +205,7 @@
 }
 // am 2:1
 #let flag-am(height:.65em) = {
-  flag_h3((rgb(217,0,18),rgb(0,51,160),rgb(242,168,0)), height: height, color_height: (1/3,1/3,1/3), ratio: 1/2)
+  flag-h3((rgb(217,0,18),rgb(0,51,160),rgb(242,168,0)), height: height, color-height: (1/3,1/3,1/3), ratio: 1/2)
 }
 // ao 2:3
 #let flag-ao(height:.65em) = {
@@ -230,7 +230,7 @@
 // ar 5:8
 #let flag-ar(height:.65em) = {
   box(
-    flag_h3((rgb("74acdf"),white,rgb("74acdf")),ratio: 5/8, height: height)
+    flag-h3((rgb("74acdf"),white,rgb("74acdf")),ratio: 5/8, height: height)
     + place(
       dx:(3/5+1/20)*height,
       dy:(-2/3+1/60)*height,
@@ -248,12 +248,12 @@
 }
 // at 2:3
 #let flag-at(height:.65em) = {
-  flag_h3((rgb(200,16,46),white,rgb(200,16,46)),height: height, ratio:2/3)
+  flag-h3((rgb(200,16,46),white,rgb(200,16,46)),height: height, ratio:2/3)
 }
 // az 
 #let flag-az(height:.65em) = {
   box(
-    flag_h3((rgb(0,181,226),rgb(239,51,64),rgb(80,158,47)),height: height, ratio:2/3)
+    flag-h3((rgb(0,181,226),rgb(239,51,64),rgb(80,158,47)),height: height, ratio:2/3)
     + place(
         //dx:(3/2/2-1/3/2)*height,
         dx:(3/2/2-3/20-1/24)*height,
@@ -319,7 +319,7 @@
 // bb 2:3
 #let flag-bb(height:.65em) = {
   box(
-    flag_v3((rgb(0,38,127),rgb(255,199,38),rgb(0,38,127)), height:height, ratio: 2/3)
+    flag-v3((rgb(0,38,127),rgb(255,199,38),rgb(0,38,127)), height:height, ratio: 2/3)
     + place(
         dy:-80%,
         dx:35%,
@@ -351,7 +351,7 @@
 }
 // be 2:3
 #let flag-be(height:.65em) = {
-  flag_v3((rgb(0,0,0),rgb(255,233,54),rgb(255,15,33)), height:height)
+  flag-v3((rgb(0,0,0),rgb(255,233,54),rgb(255,15,33)), height:height)
 }
 // bf 2:3?
 #let flag-bf(height:.65em) = {
@@ -376,7 +376,7 @@
 }
 // bg 3:5
 #let flag-bg(height:.65em) = {
-  flag_h3((rgb("FFFFFF"),rgb(0,155,117),rgb(208,28,31)),height: height, ratio:3/5)
+  flag-h3((rgb("FFFFFF"),rgb(0,155,117),rgb(208,28,31)),height: height, ratio:3/5)
 }
 // bh 3:5
 #let flag-bh(height:.65em) = {
@@ -556,7 +556,7 @@
 // bo 15:22
 #let flag-bo(height:.65em) = {
   box(
-    flag_h3((rgb(213,43,30),rgb(252,209,22),rgb(0,121,52)),height: height, ratio:15/22)
+    flag-h3((rgb(213,43,30),rgb(252,209,22),rgb(0,121,52)),height: height, ratio:15/22)
     +place(
       dy:-(2/3-1/3*1/20)*height,
       dx:(22/15/2-43/240)*height,
@@ -601,7 +601,7 @@
 // bs 
 #let flag-bs(height:.65em) = {
   box(
-    flag_h3((rgb(0,119,139),rgb(255,199,44), rgb(0,119,139)),height: height, ratio:1/2, color_height: (1/3,1/3,1/3))
+    flag-h3((rgb(0,119,139),rgb(255,199,44), rgb(0,119,139)),height: height, ratio:1/2, color-height: (1/3,1/3,1/3))
     + place(
       dy:-height,
       polygon(
@@ -653,7 +653,7 @@
 // by 1:2
 #let flag-by(height:.65em) = {
   box(
-    flag_h3((rgb(0,151,57),rgb(210,39,48), none),height: height, ratio:1/2, color_height: (2/3,1/3,0))
+    flag-h3((rgb(0,151,57),rgb(210,39,48), none),height: height, ratio:1/2, color-height: (2/3,1/3,0))
     + place(
       dy:-height,
       image("coat of arms/BY.svg", height: height)
@@ -663,7 +663,7 @@
 // bz coat of arms 3:5
 #let flag-bz(height:.65em) = {
   box(
-    flag_h3((rgb("d90f19"),rgb("171696"),rgb("d90f19")), height: height,ratio:3/5,color_height: (1/10,8/10,1/10))
+    flag-h3((rgb("d90f19"),rgb("171696"),rgb("d90f19")), height: height,ratio:3/5,color-height: (1/10,8/10,1/10))
     + place(
         dy:-5/6*height,
         dx:(1/2-1/5)*5/3*height,
@@ -691,7 +691,7 @@
 // ca 1:2
 #let flag-ca(height:.65em) = {
   box(
-    flag_v3((rgb("ed1c24"),white,rgb("ed1c24")), height:height, color_width: (1/4,1/2,1/4), ratio: 1/2)
+    flag-v3((rgb("ed1c24"),white,rgb("ed1c24")), height:height, color-width: (1/4,1/2,1/4), ratio: 1/2)
     + place(
       dx:(1/2+1/7)*height,
       dy:(-1+1/8)*height,
@@ -820,7 +820,7 @@
 }
 // ch 5:5
 #let flag-ch(height:.65em) = {
-  flag_cross((rgb(200,16,46),rgb(200,16,46),white), height:height,x_sets: (1,1,1,1,1),y_sets: (1,1,1,1,1), full_cross: false)
+  flag-cross((rgb(200,16,46),rgb(200,16,46),white), height:height,x-sets: (1,1,1,1,1),y-sets: (1,1,1,1,1), full-cross: false)
 }
 // ci 2:3
 #let flag-ci(height:.65em) = {
@@ -839,7 +839,7 @@
 // cl 2:3
 #let flag-cl(height:.65em) = {
   box(
-    flag_h3((white,rgb(213,43,30),none),color_height: (1/2,1/2,0),ratio:2/3, height: height)
+    flag-h3((white,rgb(213,43,30),none),color-height: (1/2,1/2,0),ratio:2/3, height: height)
     + place(
       dy:-height,
       rect(
@@ -925,7 +925,7 @@
 // co 2:3
 #let flag-co(height:.65em) = {
   box(
-    flag_h3((rgb("FFCD00"),rgb("003087"),rgb("C8102E")),color_height: (1/2,1/4,1/4), height: height, ratio:2/3)
+    flag-h3((rgb("FFCD00"),rgb("003087"),rgb("C8102E")),color-height: (1/2,1/4,1/4), height: height, ratio:2/3)
   )
 }
 // cr 3:5
@@ -1082,7 +1082,7 @@
 // cz
 #let flag-cz(height:.65em) = {
   box(
-    flag_h3((white,cmyk(0%, 100%, 96%, 8%),none),height: height,color_height: (1/2,1/2,0), ratio:2/3)+
+    flag-h3((white,cmyk(0%, 100%, 96%, 8%),none),height: height,color-height: (1/2,1/2,0), ratio:2/3)+
     place(
       dx: 0pt,
       dy:-height,
@@ -1097,7 +1097,7 @@
 }
 // de 3:5
 #let flag-de(height:.65em) = {
-  flag_h3((rgb("000000"),rgb("FF0000"), rgb("FFCC00")),height: height)
+  flag-h3((rgb("000000"),rgb("FF0000"), rgb("FFCC00")),height: height)
 }
 // dj 2:3?
 #let flag-dj(height:.65em) = {
@@ -1174,7 +1174,7 @@
 }
 // dk 28:37
 #let flag-dk(height:.65em) = {
-  flag_cross((rgb(200,16,46),none,white),height: height, x_sets: (12,0,4,0,21),y_sets: (12,0,4,0,12)) 
+  flag-cross((rgb(200,16,46),none,white),height: height, x-sets: (12,0,4,0,21),y-sets: (12,0,4,0,12)) 
 }
 // dz 2:3
 #let flag-dz(height:.65em) = {
@@ -1229,7 +1229,7 @@
 // ec 2:3
 #let flag-ec(height:.65em) = {
   box(
-    flag_h3((rgb("FFDD00"),rgb("034ea2"),rgb("ed1c24")),color_height: (1/2,1/4,1/4), height: height, ratio:2/3)
+    flag-h3((rgb("FFDD00"),rgb("034ea2"),rgb("ed1c24")),color-height: (1/2,1/4,1/4), height: height, ratio:2/3)
     +place(
       dy:-3/4*height,
       dx:2/4*height,
@@ -1243,7 +1243,7 @@
 }
 // ee 7:11
 #let flag-ee(height:.65em) = {
-  flag_h3((rgb("0072ce"),rgb("000000"),white),height: height, ratio:7/11)
+  flag-h3((rgb("0072ce"),rgb("000000"),white),height: height, ratio:7/11)
 }
 // eg 
 #let flag-eg(height:.65em) = {
@@ -1290,7 +1290,7 @@
 // es 2:3
 #let flag-es(height:.65em) = {
   box(
-    flag_h3((rgb("AD1519"),rgb("FABD00"),rgb("AD1519")), height:height,color_height: (1/4,1/2,1/4),ratio:2/3)+place(
+    flag-h3((rgb("AD1519"),rgb("FABD00"),rgb("AD1519")), height:height,color-height: (1/4,1/2,1/4),ratio:2/3)+place(
       // coat of arms
       dx:height*30%,
       dy:height*-72%,
@@ -1367,11 +1367,11 @@
 }
 // fi 11:18
 #let flag-fi(height:.65em) = {
-  flag_cross((white,none,blue), height: height, x_sets: (5,0,3,0,10), y_sets: (4,0,3,0,4) )
+  flag-cross((white,none,blue), height: height, x-sets: (5,0,3,0,10), y-sets: (4,0,3,0,4) )
 }
 // fr 2:3
 #let flag-fr(height:.65em) = {
-  flag_v3((rgb(0,85,164),white,rgb(239,65,53)), height:height)
+  flag-v3((rgb(0,85,164),white,rgb(239,65,53)), height:height)
 }
 // ga 3:4
 #let flag-ga(height:.65em) = {
@@ -1649,7 +1649,7 @@
 // ge 2:3
 #let flag-ge(height:65em) = {
   box(
-    flag_cross((white,none,red),height:height, x_sets: (130,0,40,0,130), y_sets: (80,0,40,0,80))
+    flag-cross((white,none,red),height:height, x-sets: (130,0,40,0,130), y-sets: (80,0,40,0,80))
     +place(dy:-180/200*100%, dx:10%,text(red, size: height/3,[\u{2720}]))
     +place(dy:-60/200*100%, dx:10%,text(red, size: height/3,[\u{2720}]))
     +place(dy:-180/200*100%, dx:65%,text(red, size: height/3,[\u{2720}]))
@@ -1743,19 +1743,19 @@
   box(
   stack(
     dir:ttb,
-    flag_h3((rgb("004C98"),white,rgb("004C98")),height: height/3,color_height: (1/3,1/3,1/3), ratio:2/9),
-    flag_h3((white,rgb("004C98"),white),height: height/3,color_height: (1/3,1/3,1/3), ratio:2/9),
-    flag_h3((rgb("004C98"),white,rgb("004C98")),height: height/3,color_height: (1/3,1/3,1/3), ratio:2/9),
+    flag-h3((rgb("004C98"),white,rgb("004C98")),height: height/3,color-height: (1/3,1/3,1/3), ratio:2/9),
+    flag-h3((white,rgb("004C98"),white),height: height/3,color-height: (1/3,1/3,1/3), ratio:2/9),
+    flag-h3((rgb("004C98"),white,rgb("004C98")),height: height/3,color-height: (1/3,1/3,1/3), ratio:2/9),
   )+place(
       dy:-height,
-      flag_cross((rgb("004C98"),rgb("004C98"),white),height: height*10/18, x_sets: (1,1,1,1,1),y_sets: (1,1,1,1,1),)
+      flag-cross((rgb("004C98"),rgb("004C98"),white),height: height*10/18, x-sets: (1,1,1,1,1),y-sets: (1,1,1,1,1),)
     )
   )
 }
 // gt 5:8
 #let flag-gt(height:.65em) = {
   box(
-    flag_v3((blue,white,blue), height: height, ratio: 5/8)
+    flag-v3((blue,white,blue), height: height, ratio: 5/8)
     + place(
         dy:-65%,
         dx:38%,
@@ -1829,7 +1829,7 @@
 // hn 1:2
 #let flag-hn(height:.65em) = {
   box(
-    flag_h3((rgb(0, 188, 228),rgb(255,255,255),rgb(0, 188, 228)),height: height,ratio: 1/2)
+    flag-h3((rgb(0, 188, 228),rgb(255,255,255),rgb(0, 188, 228)),height: height,ratio: 1/2)
     +place(
       dx:26/72*2*height -2.5%,
       dy:height*-50%+2.5%,
@@ -1912,7 +1912,7 @@
 }
 // hr 
 #let flag-hr(height:.65em) = {
-  box(flag_h3((rgb(255, 0, 0),rgb(255,255,255),rgb(23, 23, 150)),height: height,ratio: 1/2)+place(
+  box(flag-h3((rgb(255, 0, 0),rgb(255,255,255),rgb(23, 23, 150)),height: height,ratio: 1/2)+place(
     // coat of arms
     dx:height*80%,
     dy:height*-84.2%,
@@ -1923,7 +1923,7 @@
 // ht 3:5
 #let flag-ht(height:.65em) = {
   box(
-    flag_h3((rgb("00209f"),rgb("d21034"),none),color_height: (1/2,1/2,0), height: height, ratio:3/5)
+    flag-h3((rgb("00209f"),rgb("d21034"),none),color-height: (1/2,1/2,0), height: height, ratio:3/5)
     +place(
       dy:-3/4*height,
       dx:5/3/3.2*height,
@@ -1946,7 +1946,7 @@
 }
 // hu 1:2
 #let flag-hu(height:.65em) = {
-  flag_h3((rgb(206, 41, 57),rgb(255,255,255),rgb(71, 112, 80)),height: height,ratio: 1/2)
+  flag-h3((rgb(206, 41, 57),rgb(255,255,255),rgb(71, 112, 80)),height: height,ratio: 1/2)
 }
 // id 2:3
 #let flag-id(height:.65em) = {
@@ -1963,7 +1963,7 @@
 }
 // ie 
 #let flag-ie(height:.65em) = {
-  flag_v3((rgb(22, 155, 98),rgb(255,255,255),rgb(255,136,62)), height:height, ratio:1/2)
+  flag-v3((rgb(22, 155, 98),rgb(255,255,255),rgb(255,136,62)), height:height, ratio:1/2)
 }
 // il 8:11
 #let flag-il(height:.65em) = {
@@ -2062,11 +2062,11 @@
 }
 // is 
 #let flag-is(height:.65em) = {
-  flag_cross((rgb("02529C"),rgb("FFFFFF"),rgb("DC1E35")),height: height,x_sets: (7,1,2,1,14),y_sets: (7,1,2,1,7))
+  flag-cross((rgb("02529C"),rgb("FFFFFF"),rgb("DC1E35")),height: height,x-sets: (7,1,2,1,14),y-sets: (7,1,2,1,7))
 }
 // it 2:3
 #let flag-it(height:.65em) = {
-  flag_v3((rgb(0,146,70),rgb(241,242,241),rgb(206,43,55)), height:height)
+  flag-v3((rgb(0,146,70),rgb(241,242,241),rgb(206,43,55)), height:height)
 }
 // jm
 #let flag-jm(height:.65em) = {
@@ -2554,7 +2554,7 @@
 // li 3:5
 #let flag-li(height:.65em) = {
   box(
-    flag_h3((rgb(0,39,128),rgb(207,9,33),none),height: height,ratio:3/5,color_height: (1/2,1/2,0))+place(
+    flag-h3((rgb(0,39,128),rgb(207,9,33),none),height: height,ratio:3/5,color-height: (1/2,1/2,0))+place(
       // coat of arms
       dx:height*40%,
       dy:height*-92%,
@@ -2648,15 +2648,15 @@
 }
 // lt
 #let flag-lt(height:.65em) = {
-  flag_h3((rgb("fdb913"),rgb("006a44"),rgb("c1272d")),height: height,ratio:7/11)
+  flag-h3((rgb("fdb913"),rgb("006a44"),rgb("c1272d")),height: height,ratio:7/11)
 }
 // lu 3:5
 #let flag-lu(height:.65em) = {
-  flag_h3((rgb(199,63,74),white,rgb(0,137,182)),height: height)
+  flag-h3((rgb(199,63,74),white,rgb(0,137,182)),height: height)
 }
 // lv 7:11
 #let flag-lv(height:.65em) = {
-  flag_h3((rgb(158, 27, 52),rgb("FFFFFF"),rgb(158, 27, 52)),height: height,ratio:1/2,color_height:(2/5,1/5,2/5))
+  flag-h3((rgb(158, 27, 52),rgb("FFFFFF"),rgb(158, 27, 52)),height: height,ratio:1/2,color-height:(2/5,1/5,2/5))
 }
 // ly 1:2?
 #let flag-ly(height:.65em) = {
@@ -2726,12 +2726,12 @@
 }
 // mc 
 #let flag-mc(height:.65em) = {
-  flag_h3((rgb("CF142B"),rgb("FFFFFF"),none), color_height: (1/2,1/2,0), height:height)
+  flag-h3((rgb("CF142B"),rgb("FFFFFF"),none), color-height: (1/2,1/2,0), height:height)
 }
 // md 1:2
 #let flag-md(height:.65em)={
   box(
-    flag_v3((rgb("0046ae"),rgb("ffd200"),rgb("cc092f")),height: height, ratio:1/2, color_width: (1/3,1/3,1/3))
+    flag-v3((rgb("0046ae"),rgb("ffd200"),rgb("cc092f")),height: height, ratio:1/2, color-width: (1/3,1/3,1/3))
     +place(dy:-76.8%*height, dx:(1-2/10)*height,image("coat of arms/MD.svg", width:2/5*height))
     //+place(dy:-50%*height,line(length:height*2))
     //+place(dy:-50%*height, dx:height/2,rotate(90deg,line(length:height)))
@@ -3050,7 +3050,7 @@
 // mt 2:3 coat of arms
 #let flag-mt(height:.65em) = {
   box(
-    flag_v2((rgb("FFFFFF"),rgb("CF142B")),height: height, ratio:2/3)+place(
+    flag-v2((rgb("FFFFFF"),rgb("CF142B")),height: height, ratio:2/3)+place(
     dx:(81/648-(112/648)/2)*height,
     dy:(81/432-(112/432)/2-1)*height,
     image("coat of arms/MT.svg", height:112/432*height
@@ -3126,7 +3126,7 @@
 // mx coat of arms 4:7
 #let flag-mx(height:.65em) = {
   box(
-    flag_v3((rgb(0,104,71),white,rgb(206,17,38)), height: height, ratio:4/7)
+    flag-v3((rgb(0,104,71),white,rgb(206,17,38)), height: height, ratio:4/7)
     +place(
       dy:-2/3*height,
       dx:2/3*height,
@@ -3360,7 +3360,7 @@
 // ni 3:5
 #let flag-ni(height:.65em) = {
   box(
-    flag_h3((rgb("0080FF"),rgb(255,255,255),rgb("0080FF")),height: height,ratio: 3/5)
+    flag-h3((rgb("0080FF"),rgb(255,255,255),rgb("0080FF")),height: height,ratio: 3/5)
     + place(
         dy:-66%,
         dx:40%*5/3*height,
@@ -3370,11 +3370,11 @@
 }
 // nl 2:3
 #let flag-nl(height:.65em) = {
-  flag_h3((rgb(173,29,37),white,rgb(30,71,133)),height: height, ratio:2/3)
+  flag-h3((rgb(173,29,37),white,rgb(30,71,133)),height: height, ratio:2/3)
 }
 // no 
 #let flag-no(height:.65em) = {
-  flag_cross((rgb("BA0C2F"),rgb("FFFFFF"),rgb("00205B")),height: height,x_sets: (6,1,2,1,12),y_sets: (6,1,2,1,6))
+  flag-cross((rgb("BA0C2F"),rgb("FFFFFF"),rgb("00205B")),height: height,x-sets: (6,1,2,1,12),y-sets: (6,1,2,1,6))
 }
 // np 4/3:1
 #let flag-np(height:.65em) = {
@@ -3606,7 +3606,7 @@
 // pe 2:3
 #let flag-pe(height:.65em) = {
   box(
-    flag_v3((rgb(217,16,35),white,rgb(217,16,35)), height:height,ratio:2/3)
+    flag-v3((rgb(217,16,35),white,rgb(217,16,35)), height:height,ratio:2/3)
   )
 }
 // ph 1:2
@@ -3730,7 +3730,7 @@
 }
 // pl 5:8
 #let flag-pl(height:.65em) = {
-  flag_h3((rgb("EEEEEE"),rgb("D4213D"),none),height: height, ratio:5/8,color_height: (1/2,1/2,0))
+  flag-h3((rgb("EEEEEE"),rgb("D4213D"),none),height: height, ratio:5/8,color-height: (1/2,1/2,0))
 }
 // ps 1:2
 #let flag-ps(height:.65em) = {
@@ -3758,7 +3758,7 @@
 }
 // pt 2:3
 #let flag-pt(height:.65em) = {
-  box(flag_v2((rgb("006600"),rgb("FF0000")),height: height, ratio:2/3, color_width: (2/5,3/5))+place(
+  box(flag-v2((rgb("006600"),rgb("FF0000")),height: height, ratio:2/3, color-width: (2/5,3/5))+place(
     // coat of arms
     dx:(2/5)*height,
     dy:-2/3*height,
@@ -3769,7 +3769,7 @@
 // py 3:5 coat of arms
 #let flag-py(height:.65em) = {
   box(
-    flag_h3((rgb("d52b1e"),white,rgb("0038a8")),height:height, ratio:3/5)
+    flag-h3((rgb("d52b1e"),white,rgb("0038a8")),height:height, ratio:3/5)
     + place(
         dy:-(2/3-1/24)*height,
         dx:height*(2/3+1/24),
@@ -3824,12 +3824,12 @@
 }
 // ro 2:3
 #let flag-ro(height:.65em) = {
-  flag_v3((rgb("002b7f"),rgb("fcd116"),rgb("ce1126")),height: height, ratio:2/3, color_width: (1/3,1/3,1/3))
+  flag-v3((rgb("002b7f"),rgb("fcd116"),rgb("ce1126")),height: height, ratio:2/3, color-width: (1/3,1/3,1/3))
 }
 // rs 2:3
 #let flag-rs(height:.65em) = {
   box(
-    flag_h3((cmyk(0%, 90%, 70%, 10%),rgb("0C4077"),rgb("FFFFFF")),height: height, ratio:2/3)
+    flag-h3((cmyk(0%, 90%, 70%, 10%),rgb("0C4077"),rgb("FFFFFF")),height: height, ratio:2/3)
     +place(
       dx:2/3*height/2,
       dy:-(1-2/18)*height,
@@ -3838,7 +3838,7 @@
 }
 // ru 2:3
 #let flag-ru(height:.65em) = {
-  flag_h3((white,rgb("0039A6"),rgb("D52b1e")), ratio:2/3, height: height)
+  flag-h3((white,rgb("0039A6"),rgb("D52b1e")), ratio:2/3, height: height)
 }
 // rw 2:3
 #let flag-rw(height:.65em) = {
@@ -3987,7 +3987,7 @@
 }
 // se 5:8
 #let flag-se(height:.65em) = {
-  flag_cross((rgb("005293"),none,rgb("FFCD00")),height: height,x_sets: (5,0,2,0,9),y_sets: (4,0,2,0,4))
+  flag-cross((rgb("005293"),none,rgb("FFCD00")),height: height,x-sets: (5,0,2,0,9),y-sets: (4,0,2,0,4))
 }
 // sg 
 #let flag-sg(height:.65em) = {
@@ -4036,7 +4036,7 @@
 // si 1:2
 #let flag-si(height:.65em) = {
   box(
-    flag_h3((white,rgb("#0004e6e0"),cmyk(0%,100%,100%,0%)),height: height,ratio: 1/2)
+    flag-h3((white,rgb("#0004e6e0"),cmyk(0%,100%,100%,0%)),height: height,ratio: 1/2)
     + place(
         dy:-(1-1/6)*height,
         dx:1.5/6*height,
@@ -4047,7 +4047,7 @@
 // sk 2:3
 #let flag-sk(height:.65em) = {
   box(
-    flag_h3((white,rgb("0b4ea2"),rgb("ee1c25")),height: height,ratio: 2/3)
+    flag-h3((white,rgb("0b4ea2"),rgb("ee1c25")),height: height,ratio: 2/3)
     + place(dy:(-1+15/60)*height, dx:15/90*height,image("coat of arms/SK.svg", height:height/2))
   )
 }
@@ -4069,7 +4069,7 @@
 // sm 3:4
 #let flag-sm(height:.65em) = {
   box(
-    flag_h3((white,cmyk(55%,10%,5%,0%),none),height: height,ratio: 3/4,color_height: (1/2,1/2,0))
+    flag-h3((white,cmyk(55%,10%,5%,0%),none),height: height,ratio: 3/4,color-height: (1/2,1/2,0))
     + place(
         dy:-(1-5/18)*height,
         dx:1/2*height,
@@ -4287,7 +4287,7 @@
 }
 // ua 3:4
 #let flag-ua(height:.65em) = {
-  flag_h3((rgb("0057b8"),rgb("ffd700"),none), height: height, color_height: (1/2,1/2,0), ratio: 2/3)
+  flag-h3((rgb("0057b8"),rgb("ffd700"),none), height: height, color-height: (1/2,1/2,0), ratio: 2/3)
 }
 // ug 2:3
 #let flag-ug(height:.65em) = {
@@ -4674,7 +4674,7 @@
 // va 1:1 
 #let flag-va(height:.65em) = {
   box(
-    flag_v2((rgb(255,242,0),white),height: height, ratio:1, color_width: (1/2,1/2))
+    flag-v2((rgb(255,242,0),white),height: height, ratio:1, color-width: (1/2,1/2))
     +place(
       // coat of arms
       dx:(13/22)*height,
@@ -4686,7 +4686,7 @@
 // ve 2:3
 #let flag-ve(height:.65em) = {
   box(
-    flag_h3((rgb("FFCD00"),rgb("003087"),rgb("C8102E")),height:height, ratio:2/3)+
+    flag-h3((rgb("FFCD00"),rgb("003087"),rgb("C8102E")),height:height, ratio:2/3)+
     for i in range(8) {
       place(
         dx:(.71 + calc.cos(i*25.71*1deg)/4)*height,

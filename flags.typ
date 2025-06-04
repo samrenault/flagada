@@ -59,48 +59,7 @@
     )
   ) 
 }
-
-#let flag-cross(colors,height:.65em,x-sets:(5,0,3,0,10),y-sets:(4,0,3,0,4), full-cross:true) = {
-  // up to 3 colors and 2 crosses 
-  box(
-    height:height,
-    width:x-sets.sum()/y-sets.sum()*height,
-    grid(
-      columns: x-sets.map(i=>i*1fr),
-      // first line 
-      rect(fill:colors.at(0),height: y-sets.at(0)/y-sets.sum()*100%,width: 100%, outset: (bottom: 1pt,right:if full-cross {0pt} else {1pt}),),
-      rect(fill:colors.at(1),height: y-sets.at(0)/y-sets.sum()*100%,width: 100%, outset: (bottom: 1pt), stroke:none),
-      rect(fill:if full-cross {colors.at(2)} else {colors.at(1)},height: y-sets.at(0)/y-sets.sum()*100%,width: 100%, outset: (bottom: 1pt,x:if full-cross {0pt} else {1pt}),),
-      rect(fill:colors.at(1),height: y-sets.at(0)/y-sets.sum()*100%,width: 100%, outset: (bottom: 1pt,x:1pt), stroke:none),
-      rect(fill:colors.at(0),height: y-sets.at(0)/y-sets.sum()*100%,width: 100%, outset: (bottom: 1pt,left:1pt)),
-      // second line
-      rect(fill:colors.at(1),height: y-sets.at(1)/y-sets.sum()*100%,width: 100%, stroke:none),
-      rect(fill:colors.at(1),height: y-sets.at(1)/y-sets.sum()*100%,width: 100%, outset: (left:1pt),stroke:none),
-      rect(fill:colors.at(2),height: y-sets.at(1)/y-sets.sum()*100%,width: 100%, outset: (bottom: 1pt,)),
-      rect(fill:colors.at(1),height: y-sets.at(1)/y-sets.sum()*100%,width: 100%, outset: (x:1pt), stroke:none),
-      rect(fill:colors.at(1),height: y-sets.at(1)/y-sets.sum()*100%,width: 100%, stroke:none),
-      // middle line
-      rect(fill:if full-cross {colors.at(2)} else {colors.at(1)},height: y-sets.at(2)/y-sets.sum()*100%,width: 100%, outset: (y:if full-cross {0pt} else {1pt})),
-      rect(fill:colors.at(2),height: y-sets.at(2)/y-sets.sum()*100%,width: 100%, outset: (x:1pt)),
-      rect(fill:colors.at(2),height: y-sets.at(2)/y-sets.sum()*100%,width: 100%, outset: (x:1pt,)),
-      rect(fill:colors.at(2),height: y-sets.at(2)/y-sets.sum()*100%,width: 100%, outset: (x:1pt)),
-      rect(fill:if full-cross {colors.at(2)} else {colors.at(1)},height: y-sets.at(2)/y-sets.sum()*100%,width: 100%, outset: (y:if full-cross {0pt} else {1pt})),
-      // penultimate line
-      rect(fill:colors.at(1),height: y-sets.at(3)/y-sets.sum()*100%,width: 100%, stroke:none),
-      rect(fill:colors.at(1),height: y-sets.at(3)/y-sets.sum()*100%,width: 100%, outset: (left:0pt),stroke:none),
-      rect(fill:colors.at(2),height: y-sets.at(3)/y-sets.sum()*100%,width: 100%, outset: (top: 1pt)),
-      rect(fill:colors.at(1),height: y-sets.at(3)/y-sets.sum()*100%,width: 100%, outset: (right:0pt),stroke:none),
-      rect(fill:colors.at(1),height: y-sets.at(3)/y-sets.sum()*100%,width: 100%, stroke:none),
-      // last line 
-      rect(fill:colors.at(0),height: y-sets.at(4)/y-sets.sum()*100%,width: 100%, outset: (top:if full-cross {0pt} else {1pt}, right: if full-cross {0pt} else {1pt}),),
-      rect(fill:colors.at(1),height: y-sets.at(4)/y-sets.sum()*100%,width: 100%, outset: (top:1pt), stroke:none),
-      rect(fill:if full-cross {colors.at(2)} else {colors.at(1)},height: y-sets.at(4)/y-sets.sum()*100%,width: 100%, outset: (top:1pt,x:if full-cross {0pt} else {1pt}),),
-      rect(fill:colors.at(1),height: y-sets.at(4)/y-sets.sum()*100%,width: 100%, outset: (top:1pt), stroke:none),
-      rect(fill:colors.at(0),height: y-sets.at(4)/y-sets.sum()*100%,width: 100%, outset: (top:if full-cross {0pt} else {1pt}, left: if full-cross {0pt} else {1pt}),),
-    )
-  ) 
-}
-// 
+ 
 #let polygram(schlafli,size,color,paint:none) = {
   let pts_orders = ((range(schlafli.first()),)*schlafli.last())
     .flatten()
@@ -155,6 +114,20 @@
         width: 3/12*height*2,
         height: height,
         fill:rgb(200,16,46))
+    )
+  )
+}
+// af 1:2
+#let flag-af(height:.65em) = {
+  box(
+    rect(
+      height: height,
+      width: height*2,
+      fill:white,
+    )
+    +place(
+      horizon+center,
+      image("coat of arms/AF.svg", height: height)
     )
   )
 }
@@ -818,9 +791,31 @@
     )
   )
 }
-// ch 5:5
+// ch 1:1
 #let flag-ch(height:.65em) = {
-  flag-cross((rgb(200,16,46),rgb(200,16,46),white), height:height,x-sets: (1,1,1,1,1),y-sets: (1,1,1,1,1), full-cross: false)
+  box(
+    rect(
+      height: height,
+      width: height,
+      fill: rgb(200,16,46)
+      )
+    + place(
+        horizon+center,
+        rect(
+          height: 20/32*height,
+          width: 6/32*height,
+          fill:white
+          )
+    )
+    + place(
+        horizon+center,
+        rect(
+          height: 6/32*height,
+          width: 20/32*height,
+          fill:white
+          )
+    )
+  )
 }
 // ci 2:3
 #let flag-ci(height:.65em) = {
@@ -1133,6 +1128,294 @@
     )
   )
 }
+// dk 28:37
+#let flag-dk(height:.65em) = {
+  box(
+    rect(
+      height: height,
+      width:  37/28*height,
+      fill: rgb(200,16,46)
+      )
+    + place(
+      top,
+      dx: 12/37*37/28*height,
+      rect(
+        height: height,
+        width: 4/37*37/28*height,
+        fill: white
+      )
+    )
+    + place(
+      horizon,
+      rect(
+        height: 4/28*height,
+        width: 37/28*height,
+        fill: white
+      )
+    )
+  )
+}
+// dm 1:2
+#let flag-dm(height:.65em) = {
+  box(
+    rect(
+      height: height,
+      width: 2*height,
+      fill : black
+    )
+    +place(
+      top,
+      rect(
+        height:275/600*height,
+        width:575/1200*height*2,
+        fill:rgb(255,205,0)
+        )
+    )
+    +place(
+      top,
+      rect(
+        height:225/600*height,
+        width:525/1200*height*2,
+        fill:rgb(0,136,80)
+        )
+    )
+    +place(
+      top,
+      dy:(600-275)/600*height,
+      dx:(1200-575)/1200*height*2,
+      rect(
+        height:275/600*height,
+        width:575/1200*height*2,
+        fill:white
+        )
+    )
+    +place(
+      top,
+      dy:(600-225)/600*height,
+      dx:(1200-525)/1200*height*2,
+      rect(
+        height:225/600*height,
+        width:525/1200*height*2,
+        fill:rgb(0,136,80)
+        )
+    )
+    +place(
+      top,
+      dy:(600-225)/600*height,
+      dx:0*height*2,
+      rect(
+        height:225/600*height,
+        width:525/1200*height*2,
+        fill:rgb(0,136,80)
+        )
+    )
+    +place(
+      top,
+       dx:625/1200*height*2,
+      rect(
+        height:275/600*height,
+        width:50/1200*height*2,
+        fill:white)
+      )
+    +place(
+      top,
+      dx:675/1200*height*2,
+      dy:225/600*height,
+      rect(
+        height: 50/600*height,
+        width: (1200-675)/1200*height*2,
+        fill:rgb(255,205,0)
+      )
+    )
+    +place(
+      top,
+      dy:325/600*height,
+      rect(
+        height: 50/600*height,
+        width: (1200-675)/1200*height*2,
+        fill:white
+      )
+    +place(
+      top,
+       dx:525/1200*height*2,
+      rect(
+        height:275/600*height,
+        width:50/1200*height*2,
+        fill:rgb(255,205,0))
+      )
+    )
+    +place(
+      top,
+      dy:0*height,
+      dx:(1200-525)/1200*height*2,
+      rect(
+        height:225/600*height,
+        width:525/1200*height*2,
+        fill:rgb(0,136,80)
+        )
+    )
+    +place(
+      horizon+center,
+      circle(
+        radius: 150/600*height,
+        fill:rgb(213,0,50)
+      )
+      )
+    // position line
+    // +place(
+    //   horizon+center,
+    //   circle(
+    //     radius: 120/600*height,
+    //     //stroke: (dash:("dot",3pt))
+    //   )
+    //   )
+    // star 1
+    +place(
+      horizon+center,
+      dx:16/1200*height*2,
+      dy:-110/600*height,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          20/600*height,
+          rgb(0,136,80)
+        )
+      ), 
+    )
+    // star 2
+    +place(
+      horizon+center,
+      dx:72/1200*height*2,
+      dy:-83/600*height,
+      rotate(
+        -18deg+36deg,
+        polygram(
+          (5,2),
+          20/600*height,
+          rgb(0,136,80)
+        )
+      ), 
+    )
+    // star 3
+    +place(
+      horizon+center,
+      dx:108/1200*height*2,
+      dy:-23/600*height,
+      rotate(
+        -18deg+72deg,
+        polygram(
+          (5,2),
+          20/600*height,
+          rgb(0,136,80)
+        )
+      ), 
+    )
+    // star 4
+    +place(
+      horizon+center,
+      dx:102/1200*height*2,
+      dy:42/600*height,
+      rotate(
+        -18deg+108deg,
+        polygram(
+          (5,2),
+          20/600*height,
+          rgb(0,136,80)
+        )
+      ), 
+    )
+    // star 5
+    +place(
+      horizon+center,
+      dx:60/1200*height*2,
+      dy:92/600*height,
+      rotate(
+        -18deg+144deg,
+        polygram(
+          (5,2),
+          20/600*height,
+          rgb(0,136,80)
+        )
+      ), 
+    )
+    // star 6
+    +place(
+      horizon+center,
+      dx:-12/1200*height*2,
+      dy:110/600*height,
+      rotate(
+        -18deg+180deg,
+        polygram(
+          (5,2),
+          20/600*height,
+          rgb(0,136,80)
+        )
+      ), 
+    )
+    // star 7
+    +place(
+      horizon+center,
+      dx:-79/1200*height*2,
+      dy:78/600*height,
+      rotate(
+        -18deg+216deg,
+        polygram(
+          (5,2),
+          20/600*height,
+          rgb(0,136,80)
+        )
+      ), 
+    )
+    // star 8
+    +place(
+      horizon+center,
+      dx:-110/1200*height*2,
+      dy:20/600*height,
+      rotate(
+        -18deg+252deg,
+        polygram(
+          (5,2),
+          20/600*height,
+          rgb(0,136,80)
+        )
+      ), 
+    )
+    // star 9
+    +place(
+      horizon+center,
+      dx:-102/1200*height*2,
+      dy:-43/600*height,
+      rotate(
+        -18deg+288deg,
+        polygram(
+          (5,2),
+          20/600*height,
+          rgb(0,136,80)
+        )
+      ), 
+    )
+    // star 10
+    +place(
+      horizon+center,
+      dx:-60/1200*height*2,
+      dy:-91/600*height,
+      rotate(
+        -18deg+324deg,
+        polygram(
+          (5,2),
+          20/600*height,
+          rgb(0,136,80)
+        )
+      ), 
+    )
+    + place(
+        horizon+center,
+        image("coat of arms/DM.svg", height:height/3.5)
+    )
+  )
+
+}
 // do 
 #let flag-do(height:.65em) = {
   box(
@@ -1171,10 +1454,6 @@
         image("coat of arms/DO.svg", width:3/10*2/3*height)
         )
   )
-}
-// dk 28:37
-#let flag-dk(height:.65em) = {
-  flag-cross((rgb(200,16,46),none,white),height: height, x-sets: (12,0,4,0,21),y-sets: (12,0,4,0,12)) 
 }
 // dz 2:3
 #let flag-dz(height:.65em) = {
@@ -1367,7 +1646,64 @@
 }
 // fi 11:18
 #let flag-fi(height:.65em) = {
-  flag-cross((white,none,blue), height: height, x-sets: (5,0,3,0,10), y-sets: (4,0,3,0,4) )
+  box(
+    rect(
+      height: height,
+      width: 18/11*height,
+      fill: white
+    )
+    +place(
+      top,
+      dx:5/18*18/11*height,
+      rect(
+        height: height,
+        width: 3/18*18/11*height,
+        fill: rgb(24,68,126)
+      )
+    )
+    +place(
+      horizon,
+      rect(
+        height: 3/11*height,
+        width: 18/11*height,
+        fill: rgb(24,68,126)
+      )
+    )
+  )
+}
+// fm 10:19
+#let flag-fm(height:.65em) = {
+  box(
+    rect(
+      height: height,
+      width: 19/10*height,
+      fill:rgb(98,181,229)
+    )
+    +place(
+      center+horizon,
+      dx:height/3,
+      dy:height/20,
+      polygram((5,2),height/10,white)
+    )
+    +place(
+      center+horizon,
+      dy:-height/4,
+      dx:height/15,
+      rotate(-18deg,polygram((5,2),height/10,white))
+    )
+    +place(
+      center+horizon,
+      dy:height/4,
+      dx:height/15,
+      scale(y:-100%,rotate(-18deg,polygram((5,2),height/10,white)))
+    )
+    +place(
+      center+horizon,
+      dx:-height/3,
+      dy:height/20,
+      scale(x:-100%,polygram((5,2),height/10,white))
+    )
+  )
 }
 // fr 2:3
 #let flag-fr(height:.65em) = {
@@ -1646,10 +1982,222 @@
     )
   )
 }
+// fj 1:2
+#let flag-fj(height:.65cm) = {
+  box(
+    rect(
+      height: height,
+      width:2*height,
+      fill:rgb(98,181,229)
+    )
+  + place(
+    top+left,
+    flag-gb(height: height/2)
+    )
+  + place(
+      horizon+center,
+      dx:1/4*height*2,
+      image("coat of arms/FJ.svg", height: height/2)
+    )
+  )  
+}
+// gd 3:5
+#let flag-gd(height:.65em) = {
+  box(
+    rect(
+      height: height,
+      width: 5/3*height,
+      fill:rgb(206,17,38)
+    )
+    +place(
+      top,
+      polygon(
+        (2/20*height*5/3,1/10*height),
+        (18/20*height*5/3,1/10*height),
+        (2/20*height*5/3,9/10*height),
+        (18/20*height*5/3,9/10*height),
+        fill:rgb(252,209,22)
+        )
+    )
+    +place(
+      top,
+      polygon(
+        (2/20*height*5/3,1/10*height),
+        (18/20*height*5/3,9/10*height),
+        (18/20*height*5/3,1/10*height),
+        (2/20*height*5/3,9/10*height),
+        fill:rgb(0,122,94)
+        )
+    )
+    +place(
+      center+horizon,
+      circle(
+        radius: height/7,
+        fill:rgb(206,17,38)
+      )
+    )
+    // star in the middle
+    +place(
+      center+horizon,
+      dx:1/12*height,
+      dy:1/45*height,
+      rotate(
+        -18deg,
+        origin:right,
+        polygram(
+          (5,2),
+          height/7,
+          rgb(252,209,22)
+        )
+      )
+    )
+    // star central at top
+    +place(
+      center+top,
+      dx:1/32.5*height,
+      dy:1/25*height,
+      rotate(
+        -18deg,
+        origin:right,
+        polygram(
+          (5,2),
+          height/20,
+          rgb(252,209,22)
+        )
+      )
+    )
+    // star central at bottom
+    +place(
+      center+bottom,
+      dx:1/32.5*height,
+      dy:-1/75*height,
+      rotate(
+        -18deg,
+        origin:right,
+        polygram(
+          (5,2),
+          height/20,
+          rgb(252,209,22)
+        )
+      )
+    )
+    // star left at top
+    +place(
+      center+top,
+      dx:-1/3.5*height,
+      dy:1/25*height,
+      rotate(
+        -18deg,
+        origin:right,
+        polygram(
+          (5,2),
+          height/20,
+          rgb(252,209,22)
+        )
+      )
+    )
+    // star left at bottom
+    +place(
+      center+bottom,
+      dx:-1/3.5*height,
+      dy:-1/75*height,
+      rotate(
+        -18deg,
+        origin:right,
+        polygram(
+          (5,2),
+          height/20,
+          rgb(252,209,22)
+        )
+      )
+    )
+    // star right at top
+    +place(
+      center+top,
+      dx:1/3*height,
+      dy:1/25*height,
+      rotate(
+        -18deg,
+        origin:right,
+        polygram(
+          (5,2),
+          height/20,
+          rgb(252,209,22)
+        )
+      )
+    )
+    // star right at bottom
+    +place(
+      center+bottom,
+      dx:1/3*height,
+      dy:-1/75*height,
+      rotate(
+        -18deg,
+        origin:right,
+        polygram(
+          (5,2),
+          height/20,
+          rgb(252,209,22)
+        )
+      )
+    )
+    // nutmeg
+    + place(
+        left+horizon,
+        dx:1/5*height,
+        image("coat of arms/GD.svg", height:height/5)
+      )
+    // construction lines
+    // vertical center line
+    // + place(
+    //   center+top,
+    //   line(
+    //     start:(0%*height*5/3,0%*height),
+    //     end:(0%*height*5/3,100%*height))
+    //   )
+    // diag 1
+    // +place(
+    //   top,
+    //   line(
+    //     start:(0%*height*5/3,0%*height),
+    //     end:(100%*height*5/3,100%*height),
+    //     )
+    //   )
+    // // diag 2
+    // +place(
+    //   top,
+    //   line(
+    //     start:(100%*height*5/3,0%*height),
+    //     end:(0%*height*5/3,100%*height),
+    //     )
+    //   )
+  )
+}
 // ge 2:3
 #let flag-ge(height:65em) = {
   box(
-    flag-cross((white,none,red),height:height, x-sets: (130,0,40,0,130), y-sets: (80,0,40,0,80))
+    rect(
+      height:height,
+      width:3/2*height,
+      fill:white
+    )
+    +place(
+      top,
+      dx:130/300*3/2*height,
+      rect(
+        height:height,
+        width:40/300*3/2*height,
+        fill:red
+      )
+    )
+    +place(
+      horizon,
+      rect(
+        height:40/200*height,
+        width:3/2*height,
+        fill:red
+      )
+    )
     +place(dy:-180/200*100%, dx:10%,text(red, size: height/3,[\u{2720}]))
     +place(dy:-60/200*100%, dx:10%,text(red, size: height/3,[\u{2720}]))
     +place(dy:-180/200*100%, dx:65%,text(red, size: height/3,[\u{2720}]))
@@ -1741,14 +2289,39 @@
 // gr 2:3
 #let flag-gr(height:.65em) = {
   box(
-  stack(
-    dir:ttb,
-    flag-h3((rgb("004C98"),white,rgb("004C98")),height: height/3,color-height: (1/3,1/3,1/3), ratio:2/9),
-    flag-h3((white,rgb("004C98"),white),height: height/3,color-height: (1/3,1/3,1/3), ratio:2/9),
-    flag-h3((rgb("004C98"),white,rgb("004C98")),height: height/3,color-height: (1/3,1/3,1/3), ratio:2/9),
-  )+place(
-      dy:-height,
-      flag-cross((rgb("004C98"),rgb("004C98"),white),height: height*10/18, x-sets: (1,1,1,1,1),y-sets: (1,1,1,1,1),)
+    rect(
+      height:height,
+      width:3/2*height,
+      fill:gradient.linear(
+        dir: ttb,
+        ..((rgb("004C98"),white)*4+(rgb("004C98"),))
+        ).sharp(9)
+    )
+    +place(
+      top,
+      rect(
+        height:10/18*height,
+        width:10/27*3/2*height,
+        fill:rgb("004C98")
+      )
+      +place(
+        top,
+        dx:4/27*3/2*height,
+        rect(
+          height:10/18*height,
+          width:2/27*3/2*height,
+          fill:white
+        )
+      )
+      +place(
+        top,
+        dy:4/27*3/2*height,
+        rect(
+          height:2/18*height,
+          width:10/27*3/2*height,
+          fill:white
+        )
+      )
     )
   )
 }
@@ -2060,9 +2633,49 @@
       )
   )
 }
-// is 
+// is 18:25
 #let flag-is(height:.65em) = {
-  flag-cross((rgb("02529C"),rgb("FFFFFF"),rgb("DC1E35")),height: height,x-sets: (7,1,2,1,14),y-sets: (7,1,2,1,7))
+  box(
+    rect(
+      height:height,
+      width: 25/18*height,
+      fill: rgb("02529C")
+    )
+    +place(
+      top,
+      dx:7/25*25/18*height,
+      rect(
+        height:height,
+        width:4/25*25/18*height,
+        fill:white
+        )
+    )
+    +place(
+      horizon,
+      rect(
+        height:4/18*height,
+        width:25/18*height,
+        fill:white
+        )
+    )
+    +place(
+      top,
+      dx:8/25*25/18*height,
+      rect(
+        height:height,
+        width:2/25*25/18*height,
+        fill:rgb("DC1E35")
+        )
+    )
+    +place(
+      horizon,
+      rect(
+        height:2/18*height,
+        width:25/18*height,
+        fill:rgb("DC1E35")
+        )
+    )
+  )
 }
 // it 2:3
 #let flag-it(height:.65em) = {
@@ -2193,6 +2806,20 @@
       )
   )
 }
+// kg 2:3
+#let flag-kg(height:.65em) = {
+  box(
+    rect(
+      height:height,
+      width:3/2*height,
+      fill:rgb(255,0,0)
+    )
+    +place(
+      horizon+center,
+      image("coat of arms/KG.svg", height: height/1.5)
+    )
+  )
+}
 // kh
 #let flag-kh(height:.65em) = {
   box(
@@ -2210,6 +2837,33 @@
       + place(
         horizon+center,
         image("coat of arms/KH.svg", height: height*.8/2)
+      )
+  )
+}
+// ki 1:2
+#let flag-ki(height:.65em) = {
+  box(
+    rect(
+      height:height,
+      width: 2*height,
+    )
+    +place(
+      top,
+      curve(
+        fill:white,
+        curve.move((0*height, 150/300*height)),
+        curve.cubic((1/10*height*2, 16/30*height),(1/5*height*2, 1/2*height),(3/10*height*2, 8/15*height)),
+        curve.line((24/60*height*2, 1/2*height)),
+        curve.line((30/60*height*2, 8/15*height)),
+        curve.line((36/60*height*2, 1/2*height)),
+        curve.line((42/60*height*2, 8/15*height)),
+        curve.line((48/60*height*2, 1/2*height)),
+        curve.line((54/60*height*2, 8/15*height)),
+        curve.line((1*height*2, 15/30*height)),
+        curve.line((1*height*2, 1*height)),
+        curve.line((0*height*2, 1*height)),
+        ),
+        
       )
   )
 }
@@ -2271,6 +2925,78 @@
             )*4,
           
         )
+    )
+  )
+}
+// kn 2:3
+#let flag-kn(height:.65em) = {
+  box(
+    rect(
+      height: height,
+      width: 3/2*height,
+      fill: black
+    )
+    + place(
+        top,
+        polygon(
+          (0*3/2*height,0*height),
+          (0*3/2*height,3/4*height),
+          (3/4*3/2*height,0*height),
+          fill:yellow
+        )
+      )
+    + place(
+        top,
+        polygon(
+          (0*3/2*height,0*height),
+          (0*3/2*height,(3/4-5/60)*height),
+          ((3/4-10/120)*3/2*height,0*height),
+          fill:rgb(0,119,73)
+        )
+    )
+    + place(
+        top,
+        polygon(
+          (1*3/2*height,1/4*height),
+          (1*3/2*height,1*height),
+          (1/4*3/2*height,1*height),
+          fill:yellow
+        )
+      )
+    + place(
+        top,
+        polygon(
+          (1*3/2*height,(1/4+5/60)*height),
+          (1*3/2*height,1*height),
+          ((1/4+10/120)*3/2*height,1*height),
+          fill:red
+        )
+    )
+    + place(
+        horizon+center,
+        dx:25/120*3/2*height,
+        dy:-4/60*height,
+        rotate(
+          18deg,
+          polygram(
+            (5,2),
+            height/6,
+            white
+            )
+          )
+    )
+    + place(
+        horizon+center,
+        dx:-15/120*3/2*height,
+        dy:16/60*height,
+        rotate(
+          18deg,
+          polygram(
+            (5,2),
+            height/6,
+            white
+            )
+          )
     )
   )
 }
@@ -2514,6 +3240,20 @@
 
    )
 }
+// kz 1:2
+#let flag-kz(height:.65em) = {
+  box(
+    rect(
+      height:height,
+      width:height*2,
+      fill:rgb(0,171,194)
+    )
+    +place(
+      horizon+center,
+      image("coat of arms/KZ.svg",height: height)
+    )
+  )
+}
 // la 2:3
 #let flag-la(height:.65cm) = {
   box(
@@ -2551,6 +3291,43 @@
     )
   )
 }
+// lc 1:2
+#let flag-lc(height:.65cm) = {
+  box(
+    rect(
+      height: height,
+      width:2*height,
+      fill:rgb(99,207,254)
+    )
+    +place(
+      top,
+      polygon(
+        (1*height,3.16/36*height),
+        (24/72*height*2,(36-3.16)/36*height),
+        (48/72*height*2,(36-3.16)/36*height),
+        fill:white,
+      )
+      )
+    +place(
+      top,
+      polygon(
+        (1*height,7.16/36*height),
+        (26/72*height*2,(36-3.16)/36*height),
+        (46/72*height*2,(36-3.16)/36*height),
+        fill:black,
+      )
+      )
+    +place(
+      top,
+      polygon(
+        (1*height,18/36*height),
+        (24/72*height*2,(36-3.16)/36*height),
+        (48/72*height*2,(36-3.16)/36*height),
+        fill:yellow,
+      )
+      )
+  )
+}
 // li 3:5
 #let flag-li(height:.65em) = {
   box(
@@ -2561,7 +3338,6 @@
       image("coat of arms/LI.png", width:5/3/4*height)
     )
   )
-// lt 7:11
 }
 // lk 1:2
 #let flag-lk(height:.65em) = {
@@ -2646,7 +3422,7 @@
   )
 
 }
-// lt
+// lt 7:11
 #let flag-lt(height:.65em) = {
   flag-h3((rgb("fdb913"),rgb("006a44"),rgb("c1272d")),height: height,ratio:7/11)
 }
@@ -2779,6 +3555,61 @@
         fill:white,
       )
     )
+  )
+}
+// mh 10:19
+#let flag-mh(height:.65em)={
+  box(
+    rect(
+      height:height,
+      width: 19/10*height,
+      fill:rgb(0,56,147)
+    )
+    + place(
+        top,
+        polygon(
+          (100%*height*19/10,4/250*height),
+          (100%*height*19/10,(49+4)/250*height),
+          (0%*height*19/10,(250-8)/250*height),
+          (0%*height*19/10,(250-12)/250*height),
+          fill:rgb(221,117,0)
+        )
+      )
+    + place(
+        top,
+        polygon(
+          (100%*height*19/10,(49+4)/250*height),
+          (100%*height*19/10,(49+49+4)/250*height),
+          (0%*height*19/10,(250-4)/250*height),
+          (0%*height*19/10,(250-8)/250*height),
+          fill:white
+        )
+      )
+
+    + place(
+        top,
+        dx:91.27/475*19/10*height,
+        dy:91.27/250*height,
+        polygram(
+          (24,11),
+          155/250/2*height,
+          gradient
+            .conic(
+                angle:8deg,
+                center:(0%,0%),
+              ..(white,rgb(0,56,147),rgb(0,56,147),rgb(0,56,147),rgb(0,56,147),rgb(0,56,147),white,rgb(0,56,147),rgb(0,56,147),rgb(0,56,147),rgb(0,56,147),rgb(0,56,147),white,rgb(0,56,147),rgb(0,56,147),rgb(0,56,147),rgb(0,56,147),rgb(0,56,147),white,rgb(0,56,147),rgb(0,56,147),rgb(0,56,147),rgb(0,56,147),rgb(0,56,147)),          
+              
+              )
+            .sharp(24)
+          )
+      )
+      
+    + place(
+        top,
+        dx:91.27/475*19/10*height,
+        dy:91.27/250*height,
+        polygram((24,11),111/250/2*height,white)
+      )
   )
 }
 // mk 1:2
@@ -3372,9 +4203,49 @@
 #let flag-nl(height:.65em) = {
   flag-h3((rgb(173,29,37),white,rgb(30,71,133)),height: height, ratio:2/3)
 }
-// no 
+// no 8:11
 #let flag-no(height:.65em) = {
-  flag-cross((rgb("BA0C2F"),rgb("FFFFFF"),rgb("00205B")),height: height,x-sets: (6,1,2,1,12),y-sets: (6,1,2,1,6))
+  box(
+    rect(
+      height:height,
+      width: 11/8*height,
+      fill: rgb("BA0C2F")
+    )
+    +place(
+      top,
+      dx:6/22*11/8*height,
+      rect(
+        height:height,
+        width: 4/22*11/8*height,
+        fill: white
+      )
+    )
+    +place(
+      horizon,
+      rect(
+        height:4/16*height,
+        width: 11/8*height,
+        fill: white
+      )
+    )
+    +place(
+      top,
+      dx:7/22*11/8*height,
+      rect(
+        height:height,
+        width: 2/22*11/8*height,
+        fill: rgb("00205B")
+      )
+    )
+    +place(
+      horizon,
+      rect(
+        height:2/16*height,
+        width: 11/8*height,
+        fill: rgb("00205B")
+      )
+    )
+  )
 }
 // np 4/3:1
 #let flag-np(height:.65em) = {
@@ -3460,6 +4331,29 @@
       )
       */
     )
+  )
+}
+// nr 1:2
+#let flag-nr(height:.65em) = {
+  box(
+    rect(
+      height: height,
+      width: 2*height,
+      fill:rgb(0,47,108),
+    )+ place(
+      horizon,
+      rect(
+        height: height/12,
+        width:2*height,
+        fill:rgb(255,205,0)
+        ), 
+    )
+    + place(
+        top,
+        dx:12/48*height*2,
+        dy:17/24*height,
+        polygram((12,5),height/6,white)
+      )
   )
 }
 // nz 1:2
@@ -3607,6 +4501,80 @@
 #let flag-pe(height:.65em) = {
   box(
     flag-v3((rgb(217,16,35),white,rgb(217,16,35)), height:height,ratio:2/3)
+  )
+}
+// pg 3:4
+#let flag-pg(height:.65em) = {
+  box(
+    rect(
+      height: height,
+      width: 4/3*height,
+      fill: rgb(210,16,2)
+    )
+    +place(
+      top,
+      polygon(
+        (-0*4/3*height,0*height),
+        (-0*4/3*height,1*height,),
+        (1*4/3*height,1*height),
+        fill:black
+        )
+    )
+    // south cross
+    // gamma crucis (top)
+    + place(
+        top,
+        dx:height/3,
+        dy:height/3,
+        rotate(
+          -18deg,
+          polygram((5,2),height/15,white)
+          )
+        )
+    // alpha crucis (bottom)
+    + place(
+        top,
+        dx:height/3,
+        dy:height*6/7,
+        rotate(
+          -18deg,
+          polygram((5,2),height/15,white)
+          )
+    )
+    // beta crucis (left+center)
+    + place(
+        horizon+left,
+        dx:height*1.5/8,
+        dy:height*2/24,
+        rotate(
+          -18deg,
+          polygram((5,2),height/15,white)
+          )
+        )
+    // delta crucis (right+center)
+    + place(
+        horizon+left,
+        dx:height*4/8,
+        dy:height*1/24,
+        rotate(-18deg,polygram((5,2),height/15,white)),
+    )
+    // epsilon crucis (smallest)
+    + place(
+        horizon+left,
+        dx:height*2/5,
+        dy:height*5/24,
+        rotate(
+          -18deg,
+          polygram((5,2),height/25,white)
+        )
+    )
+    // raggiana bird of paradise
+    +place(
+      horizon+right,
+      dx:height*-1/8,
+      dy:-1/6*height,
+      image("coat of arms/PG.svg",height:height/2)
+    )
   )
 }
 // ph 1:2
@@ -3766,6 +4734,24 @@
   )
   )
 }
+// pw 5:8
+#let flag-pw(height: .65em) = {
+  box(
+    rect(
+      height: height,
+      width : 8/5*height,
+      fill:rgb(74,173,214)
+    )
+    + place(
+      left+horizon,
+      dx:3.5/16*height*8/5,
+      circle(
+        fill:yellow,
+        radius: 3/10*height
+        )
+    )
+  )
+}
 // py 3:5 coat of arms
 #let flag-py(height:.65em) = {
   box(
@@ -3910,6 +4896,95 @@
     image("coat of arms/SA.svg", height:height/2))
   )
 }
+// sb 1:2
+#let flag-sb(height: .65em) = {
+  box(
+    rect(
+      height: height,
+      width: 2*height,
+      fill: rgb(252,209,22)
+    )
+    +place(
+      top+left,
+      polygon(
+        (0*height*2,0*height),
+        (97.5%*height*2,0*height),
+        (0*height*2,95%*height),
+        fill:rgb(0,81,186)
+        )
+    )
+    +place(
+      bottom+right,
+      polygon(
+        (0*height*2,0*height),
+        (-97.5%*height*2,0*height),
+        (0*height*2,-95%*height),
+        fill:rgb(33,91,51)
+        )
+    )
+    +place(
+      top+left,
+      dx:height/7,
+      dy:height/9,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          height/10,
+          white)
+        )
+    )
+    +place(
+      top+left,
+      dx:height/7,
+      dy:height/2,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          height/10,
+          white)
+        )
+    )
+    +place(
+      top+left,
+      dx:height/2,
+      dy:height/9,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          height/10,
+          white)
+        )
+    )
+    +place(
+      top+left,
+      dx:height/2,
+      dy:height/2,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          height/10,
+          white)
+        )
+    )
+    +place(
+      top+left,
+      dx:height/3,
+      dy:height/3.5,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          height/10,
+          white)
+        )
+    )
+  )
+
+}
 // sc 1:2
 #let flag-sc(height:.65em) = {
   box(
@@ -3987,7 +5062,30 @@
 }
 // se 5:8
 #let flag-se(height:.65em) = {
-  flag-cross((rgb("005293"),none,rgb("FFCD00")),height: height,x-sets: (5,0,2,0,9),y-sets: (4,0,2,0,4))
+  box(
+    rect(
+      height: height,
+      width: 8/5*height,
+      fill: rgb("005293")
+    )
+    + place(
+        top,
+        dx: 5/16*8/5*height,
+        rect(
+          height:height,
+          width:2/16*8/5*height,
+          fill: rgb("FFCD00")
+        )
+    )
+    + place(
+        horizon,
+        rect(
+          height:2/10*height,
+          width:8/5*height,
+          fill: rgb("FFCD00")
+        )
+    )
+  )
 }
 // sg 
 #let flag-sg(height:.65em) = {
@@ -4244,6 +5342,23 @@
     */
   )
 }
+// sv 189:335
+#let flag-sv(height:.65em) = {
+  box(
+    rect(
+      height: height,
+      width: 335/189*height,
+      fill:gradient.linear(
+        dir:ttb,
+        rgb(0,71,175),white,rgb(0,71,175)
+      ).sharp(3)
+    )
+    +place(
+      center+horizon,
+      image("coat of arms/SV.svg", height: height/3.2)
+      )
+  )
+}
 // sy 2:3
 #let flag-sy(height:.65em) = {
   box(
@@ -4413,6 +5528,111 @@
       image("coat of arms/UY.svg", height: height/2.2))
     )
 }
+// uz 1:2
+#let flag-uz(height:.65em) = {
+  box(
+    rect(
+      height:height,
+      width: height*2,
+      fill: gradient.linear(
+        dir: ttb,
+        ..(rgb(0,153,181),)*80,
+        ..(rgb(206,17,38),)*5,
+        ..(white,)*80,
+        ..(rgb(206,17,38),)*5,
+        ..(rgb(0,128,0),)*80,
+        ).sharp(250)
+    )
+    +place(
+      top,
+      dx:(20)/250*height*2,
+      dy:6/125*height,
+      circle(
+        fill:white,         
+        radius:15/125*height)
+    )
+    +place(
+      top,
+      dx:27/250*height*2,
+      dy:6/125*height,
+      circle(
+        fill:rgb(0,153,181),         
+        radius:15/125*height)
+    )
+    +place(
+      top,
+      dx:(20+15+5+4+12+12)/250*height*2,
+      dy:8/125*height,
+      rotate(-18deg,polygram((5,2),4/125*height,white))
+    )
+    +place(
+      top,
+      dx:(20+15+5+4+12+12+12)/250*height*2,
+      dy:8/125*height,
+      rotate(-18deg,polygram((5,2),4/125*height,white))
+    )
+    +place(
+      top,
+      dx:(20+15+5+4+12+12+12+12)/250*height*2,
+      dy:8/125*height,
+      rotate(-18deg,polygram((5,2),4/125*height,white))
+    )
+    +place(
+      top,
+      dx:(20+15+5+4+12)/250*height*2,
+      dy:20/125*height,
+      rotate(-18deg,polygram((5,2),4/125*height,white))
+    )
+    +place(
+      top,
+      dx:(20+15+5+4+12+12)/250*height*2,
+      dy:20/125*height,
+      rotate(-18deg,polygram((5,2),4/125*height,white))
+    )
+    +place(
+      top,
+      dx:(20+15+5+4+12+12+12)/250*height*2,
+      dy:20/125*height,
+      rotate(-18deg,polygram((5,2),4/125*height,white))
+    )
+    +place(
+      top,
+      dx:(20+15+5+4+12+12+12+12)/250*height*2,
+      dy:20/125*height,
+      rotate(-18deg,polygram((5,2),4/125*height,white))
+    )
+    +place(
+      top,
+      dx:(20+15+5+4)/250*height*2,
+      dy:32/125*height,
+      rotate(-18deg,polygram((5,2),4/125*height,white))
+    )
+    +place(
+      top,
+      dx:(20+15+5+4+12)/250*height*2,
+      dy:32/125*height,
+      rotate(-18deg,polygram((5,2),4/125*height,white))
+    )
+    +place(
+      top,
+      dx:(20+15+5+4+12+12)/250*height*2,
+      dy:32/125*height,
+      rotate(-18deg,polygram((5,2),4/125*height,white))
+    )
+    +place(
+      top,
+      dx:(20+15+5+4+12+12+12)/250*height*2,
+      dy:32/125*height,
+      rotate(-18deg,polygram((5,2),4/125*height,white))
+    )
+    +place(
+      top,
+      dx:(20+15+5+4+12+12+12+12)/250*height*2,
+      dy:32/125*height,
+      rotate(-18deg,polygram((5,2),4/125*height,white))
+    )
+  )
+}
 // td 2:3
 #let flag-td(height:.65em) = {
   box(
@@ -4474,6 +5694,27 @@
     )
   )
 }
+// tj 1:2
+#let flag-tj(height:.65em) = {
+  box(
+    rect(
+      height:height,
+      width:height*2,
+      fill: gradient.linear(
+        dir:ttb,
+        ..(
+          (rgb(205,0,0),)*2,
+          (white,)*3,
+          (rgb(0,102,0),)*2,
+          ).flatten(),
+      ).sharp(7)
+    )
+    +place(
+      horizon+center,
+      image("coat of arms/TJ.svg", height:2.7/7*height)
+    )
+  )
+}
 // tl 1:2
 #let flag-tl(height:.65em) = {
   box(
@@ -4514,6 +5755,20 @@
       line(stroke:white)
     )
     */
+  )
+}
+// tm 2:3
+#let flag-tm(height:.65em) = {
+  box(
+    rect(
+      height:height,
+      width: 3/2*height,
+      fill:rgb(0,133,58)
+    )
+    +place(
+      top,
+      image("coat of arms/TM.svg", height: height)
+    )
   )
 }
 // tn 2:3
@@ -4567,6 +5822,42 @@
     */
   )
 }
+// to 1:2
+#let flag-to(height:.65em) = {
+  box(
+    rect(
+      height: height,
+      width: 2*height,
+      fill: rgb(193,0,0)
+    )
+    + place(
+        top,
+        rect(
+          height: height/2,
+          width: 20/48*2*height,
+          fill: white
+        )
+        )
+    + place(
+        top,
+        polygon(
+          ((10+1.5)/48*2*height,(6-4.5)/24*height),
+          ((10+1.5)/48*2*height,(4.5)/24*height),
+          ((10+4.5)/48*2*height,(4.5)/24*height),
+          ((10+4.5)/48*2*height,(7.5)/24*height),
+          ((10+1.5)/48*2*height,(7.5)/24*height),
+          ((10+1.5)/48*2*height,(10.5)/24*height),
+          ((10-1.5)/48*2*height,(10.5)/24*height),
+          ((10-1.5)/48*2*height,(7.5)/24*height),
+          ((10-4.5)/48*2*height,(7.5)/24*height),
+          ((10-4.5)/48*2*height,(4.5)/24*height),
+          ((10-1.5)/48*2*height,(4.5)/24*height),
+          ((10-1.5)/48*2*height,(6-4.5)/24*height),
+          fill:rgb(193,0,0)
+        )
+    )
+  )
+}
 // tr
 #let flag-tr(height:.65em) = {
   box(
@@ -4594,6 +5885,176 @@
         line(length:height*3/2, stroke:(dash:"dotted"))
       )
       */
+      )
+    )
+  )
+}
+// tt 3:5
+#let flag-tt(height:.65em) = {
+  box(
+    rect(
+      height: height,
+      width : 5/3*height,
+      fill : rgb(218,28,53)
+    )
+    + place(
+        top,
+        polygon(
+          (0*5/3*height,0*height),
+          ((4.58*2)/30*5/3*height,0*height),
+          (1*5/3*height,1*height),
+          ((30-4.58*2)/30*5/3*height,1*height),
+          fill:white
+        )
+      )
+    + place(
+        top,
+        polygon(
+          (1.5/30*5/3*height,0*height),
+          ((4.58*2-1.5)/30*5/3*height,0*height),
+          (28.5/30*5/3*height,1*height),
+          ((30-4.58*2+1.5)/30*5/3*height,1*height),
+          fill:black
+        )
+      )
+  )
+}
+// tv 1:2
+#let flag-tv(height: .65em) = {
+  box(
+    rect(
+      height:height,
+      width:2*height,
+      fill:rgb(0,156,222),
+    )
+    +place(
+      top,
+      flag-gb(height: height/2)
+      )
+    // Nukulaelae
+    +place(
+      top,
+      dx:93/100*2*height,
+      dy:13/100*height,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          height/12,
+          yellow
+        )
+      )
+    )
+    // Funafuti
+    +place(
+      top,
+      dx:83/100*2*height,
+      dy:30/100*height,
+      rotate(
+        18deg,
+        polygram(
+          (5,2),
+          height/12,
+          yellow
+        )
+      )
+    )
+    // Vaitupu
+    +place(
+      top,
+      dx:75/100*2*height,
+      dy:36/100*height,
+      rotate(
+        18deg,
+        polygram(
+          (5,2),
+          height/12,
+          yellow
+        )
+      )
+    )
+    // Niulakita
+    +place(
+      top,
+      dx:93/100*2*height,
+      dy:43/100*height,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          height/12,
+          yellow
+        )
+      )
+    )
+    // Nukufetau
+    +place(
+      top,
+      dx:86/100*2*height,
+      dy:53/100*height,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          height/12,
+          yellow
+        )
+      )
+    )
+    // Niutao
+    +place(
+      top,
+      dx:63/100*2*height,
+      dy:53/100*height,
+      rotate(
+        18deg,
+        polygram(
+          (5,2),
+          height/12,
+          yellow
+        )
+      )
+    )
+    // Nui
+    +place(
+      top,
+      dx:75/100*2*height,
+      dy:66/100*height,
+      rotate(
+        18deg,
+        polygram(
+          (5,2),
+          height/12,
+          yellow
+        )
+      )
+    )
+    // Nanumanga
+    +place(
+      top,
+      dx:63/100*2*height,
+      dy:73/100*height,
+      rotate(
+        18deg,
+        polygram(
+          (5,2),
+          height/12,
+          yellow
+        )
+      )
+    )
+    // Nanumea
+    +place(
+      top,
+      dx:55/100*2*height,
+      dy:76/100*height,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          height/12,
+          yellow
+        )
       )
     )
   )
@@ -4683,6 +6144,70 @@
     )
   )
 }
+// vc 2:3
+#let flag-vc(height:.65em) = {
+  box(
+    rect(
+      height:height,
+      width:3/2*height,
+      fill:gradient.linear(
+        dir:ltr,
+        ..(rgb(0,38,116),rgb(252,208,34),rgb(252,208,34),rgb(0,124,46))
+      ).sharp(4)
+    )
+    + place(
+        top,
+        dy:1/2*height,
+        dx:66/150*3/2*height,
+        polygon(
+          (0*height,height/7),
+          (1/2*height/7,0*height),
+          (0*height,-height/7),
+          (-1/2*height/7,0*height),
+          fill:rgb(0,124,46),
+        )
+    )
+    + place(
+        top,
+        dy:1/2*height,
+        dx:84/150*3/2*height,
+        polygon(
+          (0*height,height/7),
+          (1/2*height/7,0*height),
+          (0*height,-height/7),
+          (-1/2*height/7,0*height),
+          fill:rgb(0,124,46),
+        )
+    )
+    + place(
+        top,
+        dy:50/75*height,
+        dx:1/2*3/2*height,
+        polygon(
+          (0*height,height/7),
+          (1/2*height/7,0*height),
+          (0*height,-height/7),
+          (-1/2*height/7,0*height),
+          fill:rgb(0,124,46),
+        )
+    )
+    // construction lines
+    // + place(
+    //     top,
+    //     line(
+    //       start:(0*height,height/2),
+    //       end:(3/2*height,height/2)
+    //       )
+    //   )
+    // + place(
+    //     top,
+    //     line(
+    //       start:(3/4*height,0*height),
+    //       end:(3/4*height,height)
+    //       )
+    //   )
+  )
+}
 // ve 2:3
 #let flag-ve(height:.65em) = {
   box(
@@ -4747,6 +6272,151 @@
     )
     */
   )
+}
+// vu 19:36
+#let flag-vu(height:.65em) = {
+  box(
+    rect(
+      height:height,
+      width:36/19*height,
+      fill:black
+    )
+    +place(
+      top,
+      polygon(
+        (0*36/19*height,0*height),
+        (1*36/19*height,0*height),
+        (1*36/19*height,15/36*height),
+        (.5*36/19*height,15/36*height),
+        fill:rgb(220,36,31)
+        )
+      )
+    +place(
+      top,
+      polygon(
+        (0*36/19*height,1*height),
+        (1*36/19*height,1*height),
+        (1*36/19*height,21/36*height),
+        (.5*36/19*height,21/36*height),
+        fill:rgb(0,122,77)
+        )
+      )
+    +place(
+      top,
+      polygon(
+        (0*36/19*height,2/36*height),
+        (26/54*36/19*height,17/36*height),
+        (1*36/19*height,17/36*height),
+        (1*36/19*height,19/36*height),
+        (26/54*36/19*height,19/36*height),
+        (0*36/19*height,34/36*height),
+        (0*36/19*height,32/36*height),
+        (24/54*36/19*height,18/36*height),
+        (0*36/19*height,4/36*height),
+        
+        fill:rgb(255,209,0)
+        )
+      )
+    + place(
+        horizon,
+        dx:3/54*36/19*height,
+        image(
+          "coat of arms/VU.svg",
+          height: height/3
+          )
+        )
+  )
+}
+// ws 1:2
+#let flag-ws(height:.65em) = {
+  box(
+    rect(
+      height: height,
+      width: height*2,
+      fill:rgb(206,17,38)
+    )
+    +place(
+      top,
+      rect(
+        height:height/2,
+        width:height,
+        fill:rgb(0,43,127)
+      )
+      )
+    +place(
+      top,
+      dx:73/288*height*2,
+      dy:7/144*height,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          8/144*height,
+          white
+        )
+      )
+    )
+    +place(
+      top,
+      dx:90/288*height*2,
+      dy:20/144*height,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          7/144*height,
+          white
+        )
+      )
+    )
+    +place(
+      top,
+      dx:79/288*height*2,
+      dy:38/144*height,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          5/144*height,
+          white
+        )
+      )
+    )
+    +place(
+      top,
+      dx:53/288*height*2,
+      dy:25/144*height,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          8/144*height,
+          white
+        )
+      )
+    )
+    +place(
+      top,
+      dx:73/288*height*2,
+      dy:57/144*height,
+      rotate(
+        -18deg,
+        polygram(
+          (5,2),
+          10/144*height,
+          white
+        )
+      )
+    )
+    // construction line
+    // + place(
+    //     top,
+    //     line(
+    //       start:(72/288*height*2,0*height),
+    //       end:(72/288*height*2,1/2*height),
+    //     )
+    //   )
+  )  
 }
 // ye
 #let flag-ye(height:.65em) = {
@@ -4933,6 +6603,7 @@
   let flags = (
     AD: flag-ad(height:height),
     AE: flag-ae(height:height),
+    AF: flag-af(height:height),
     AG: flag-ag(height:height),
     AL: flag-al(height:height),
     AM: flag-am(height:height),
@@ -4976,6 +6647,7 @@
     DE: flag-de(height:height),
     DJ: flag-dj(height:height),
     DK: flag-dk(height:height),
+    DM: flag-dm(height:height),
     DO: flag-do(height:height),
     DZ: flag-dz(height:height),
     EC: flag-ec(height:height),
@@ -4986,9 +6658,12 @@
     ET: flag-et(height:height),
     EU: flag-eu(height:height),
     FI: flag-fi(height:height),
+    FJ: flag-fj(height:height),
+    FM: flag-fm(height:height),
     FR: flag-fr(height:height),
     GA: flag-ga(height:height),
     GB: flag-gb(height:height),
+    GD: flag-gd(height:height),
     GE: flag-ge(height:height),
     GH: flag-gh(height:height),
     GM: flag-gm(height:height),
@@ -5014,13 +6689,18 @@
     JO: flag-jo(height:height),
     JP: flag-jp(height:height),
     KE: flag-ke(height:height),
+    KG: flag-kg(height:height),
     KH: flag-kh(height:height),
+    KI: flag-ki(height:height),
     KM: flag-km(height:height),
+    KN: flag-kn(height:height),
     KP: flag-kp(height:height),
     KR: flag-kr(height:height),
     KW: flag-kw(height:height),
+    KZ: flag-kz(height:height),
     LA: flag-la(height:height),
     LB: flag-lb(height:height),
+    LC: flag-lc(height:height),
     LI: flag-li(height:height),
     LK: flag-lk(height:height),
     LR: flag-lr(height:height),
@@ -5034,6 +6714,7 @@
     MD: flag-md(height:height),
     ME: flag-me(height:height),
     MG: flag-mg(height:height),
+    MH: flag-mh(height:height),
     MK: flag-mk(height:height),
     ML: flag-ml(height:height),
     MM: flag-mm(height:height),
@@ -5053,15 +6734,18 @@
     NL: flag-nl(height:height),
     NO: flag-no(height:height),
     NP: flag-np(height:height),
+    NR: flag-nr(height:height),
     NZ: flag-nz(height:height),
     OM: flag-om(height:height),
     PA: flag-pa(height:height),
     PE: flag-pe(height:height),
+    PG: flag-pg(height:height),
     PH: flag-ph(height:height),
     PK: flag-pk(height:height),
     PL: flag-pl(height:height),
     PS: flag-ps(height:height),
     PT: flag-pt(height:height),
+    PW: flag-pw(height:height),
     PY: flag-py(height:height),
     QA: flag-qa(height:height),
     RO: flag-ro(height:height),
@@ -5069,8 +6753,9 @@
     RU: flag-ru(height:height),
     RW: flag-rw(height:height),
     SA: flag-sa(height:height),
-    SD: flag-sd(height:height),
+    SB: flag-sb(height:height),
     SC: flag-sc(height:height),
+    SD: flag-sd(height:height),
     SE: flag-se(height:height),
     SG: flag-sg(height:height),
     SI: flag-si(height:height),
@@ -5082,23 +6767,33 @@
     SR: flag-sr(height:height),
     SS: flag-ss(height:height),
     ST: flag-st(height:height),
+    SV: flag-sv(height:height),
     SY: flag-sy(height:height),
     SZ: flag-sz(height:height),
     TD: flag-td(height:height),
     TG: flag-tg(height:height),
     TH: flag-th(height:height),
+    TJ: flag-tj(height:height),
     TL: flag-tl(height:height),
+    TM: flag-tm(height:height),
     TN: flag-tn(height:height),
+    TO: flag-to(height:height),
     TR: flag-tr(height:height),
+    TT: flag-tt(height:height),
+    TV: flag-tv(height:height),
     TW: flag-tw(height:height),
     TZ: flag-tz(height:height),
     UA: flag-ua(height:height),
     UG: flag-ug(height:height),
     US: flag-us(height:height),
     UY: flag-uy(height:height),
+    UZ: flag-uz(height:height),
     VA: flag-va(height:height),
+    VC: flag-vc(height:height),
     VE: flag-ve(height:height),
     VN: flag-vn(height:height),
+    VU: flag-vu(height:height),
+    WS: flag-ws(height:height),
     YE: flag-ye(height:height),
     ZA: flag-za(height:height),
     ZM: flag-zm(height:height),

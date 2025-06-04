@@ -58,7 +58,7 @@ For the moment, the official format defined by each country has been used to bui
 
 ### Flags covered so far
 
-Flags for the following ISO 3166-1 codes are available in the initial version (0.2.0):
+Flags for the following ISO 3166-1 codes are available in the current version (0.2.0):
 
 AD AE AF AG AL AM AO AR AT AU AZ BA BB BD BE BF BG BH BI BJ BN BO BR BS BT BW BY BZ CA CD CF CG CH CI CL CM CN CO CR CU CV CY CZ DE DJ DK DM DO DZ EC EE EG ER ES ET EU FI FJ FM FR GA GB GD GE GH GM GN GQ GR GT GW GY HN HR HT HU ID IE IL IN IQ IR IS IT JM JO JP KE KG KH KM KN KP KR KW KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MG MH MK ML MM MN MR MT MU MV MW MX MY MZ NA NE NG NI NL NO NP NR NZ OM PA PE PG PH PK PL PS PT PW PY QA RO RS RU RW SA SB SC SD SE SG SI SK SL SM SN SO SR SS ST SV SY SZ TD TG TH TJ TL TM TN TO TR TT TV TW TZ UA UG US UY UZ VA VC VE VN VU WS YE ZA ZM ZW
 
@@ -71,3 +71,13 @@ For these flags, comments are welcome
 The flags for remaining ISO 3166-1 codes have not been developped and might be developped for the next version
 
 KI AS AI AQ AW AX BL BM BQ BV CC CK CW CX EH FK FO GF GG GI GL GP GS GU HK HM IM IO JE KY MF MO MP MQ MS NC NF NU PF PM PN PR RE SH SJ SX TC TF TK UM VG VI WF YT
+
+## History
+
+### V0.1.0
+
+The inital version of flags, not covering all countries, but mainly independant countries in Europe, America, Africa and Asia.
+
+### V0.2.0
+
+Adding some of missing country flags. In this version, only KI is a missing flag of an independant country. The missing flags not covering ISO3166 codes are for specific places (islands, local place ...) related to another country.

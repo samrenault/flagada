@@ -2,3 +2,5 @@ iso3166-1.yaml
 doc/example.typ
 dev_flag.typ
 dev.typ
+testing/*
+testing/

@@ -2505,7 +2505,7 @@
   )
 }
 // fj 1:2
-#let flag-fj(height:.65cm) = {
+#let flag-fj(height:.65em) = {
   box(
     rect(
       height: height,
@@ -2714,7 +2714,7 @@
   )
 }
 // ge 2:3
-#let flag-ge(height:65em) = {
+#let flag-ge(height:.65em) = {
   box(
     rect(
       height:height,
@@ -4190,7 +4190,7 @@
   )
 }
 // la 2:3
-#let flag-la(height:.65cm) = {
+#let flag-la(height:.65em) = {
   box(
     rect(
       height:height,
@@ -4210,7 +4210,7 @@
   )
 }
 // lb 2:3
-#let flag-lb(height:.65cm) = {
+#let flag-lb(height:.65em) = {
   box(
     rect(
       height: height,
@@ -4227,7 +4227,7 @@
   )
 }
 // lc 1:2
-#let flag-lc(height:.65cm) = {
+#let flag-lc(height:.65em) = {
   box(
     rect(
       height: height,
